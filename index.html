@@ -3,52 +3,71 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>tap tap 🫧</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet" />
+        <title>rythm tap</title>
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-
         <div id="screen-start" class="screen active">
-            <div class="start-inner">
-                <div class="title-bubble">🫧</div>
-                <h1>tap tap</h1>
-                <p class="subtitle">hit space (or tap) when the bubble reaches the ring</p>
-                <div class="difficulty-row">
-                    <button class="diff-btn active" data-diff="easy">easy</button>
-                    <button class="diff-btn" data-diff="normal">normal</button>
-                    <button class="diff-btn" data-diff="hard">hard</button>
+            <div id="start-inner">
+                <h1>rythm tap</h1>
+                <p class="subtitle">hit the bubbles as they reach the zone</p>
+                <div id="screen-start" class="screen active">
+                    <div id="start-inner">
+                        <h1>rythm tap</h1>
+                        <p class="subtitle">hit the bubbles as they reach the zone</p>
+
+                        <div id="difficulty-select">
+                            <button class="diff-btn active" data-diff="easy">easy</button>
+                            <button class="diff-btn" data-diff="normal">normal</button>
+                            <button class="diff-btn" data-diff="hard">hard</button>
+                        </div>
+
+                        <div id="diff-desc">bigger timing window, slower bubbles</div>
+                        <button id="btn-start">play ✦</button>
+
+                        <div id="controls-hint">
+                            <span>spacebar</span> or <span>tap screen</span> to hit
+                        </div>
+                    </div>
                 </div>
-                <button id="btn-start">play</button>
+
+                <div id="screen-game" class="screen">
+                    <div id="hud">
+                        <div class="hud-block">
+                            <div class="hud-label">score</div>
+                            <div id="combo">0</div>
+                        </div>
+                        <div class="hud-block">
+                            <div class="hud-label">combo</div>
+                            <div id="combo">x1</div>
+                        </div>
+                        <div class="hud-block">
+                            <div class="hud-label">accuracy</div>
+                            <div id="accuracy">-</div>
+                        </div>
+                        <div class="hud-block">
+                            <div class="hud-label">time</div>
+                            <div id="timer">0:30</div>
+                        </div>
+                    </div>
+
+
+                    <div id="track-wrap">
+                        <div id="track">
+                            <div id="hit-zone">
+                                <div id="hit-zone-ring"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="feedback"></div>
+                    <div id="key-hint">press space or tap anywhere</div>
+                </div>
+
+
+                <div id="screen-results"
             </div>
         </div>
-
-        <div id="screen-game" class="screen">
-            <div id="hud">
-                <div id="hud-score">0</div>
-                <div id="hud-combo"><span id="combo-val">0</span>x</div>
-                <div id="hud-lives"></div>
-            </div>
-
-            <div id="lane">
-                <div id="hit-zone"></div>
-                <div id="hit-ring"></div>
-            </div>
-
-            <div id="judge-text"></div>
-        </div>
-
-        <div id="screen-result" class="screen">
-            <div class="result-inner">
-            <div id="result-grade"></div>
-            <div id="result-score-label">score</div>
-            <div id="result-score">0</div>
-            <div id="result-stats"></div>
-            <button id="btn-retry">play again</button>
-            </div>
-        </div>
-
-        <script src="script.js"></script>
     </body>
-</html>
