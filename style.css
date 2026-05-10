@@ -322,3 +322,45 @@ h1 {
   color: var(--brown);
   line-height: 1;
 }
+
+#result-grade.grade-s { color: #f4b8c8; }
+#result-grade.grade-a { color: #d4c5f0; }
+#result-grade.grade-b { color: #a8d5a2; }
+#result-grade.grade-c { color: #c4956a; }
+#result-grade.grade-f { color: #c8bdb8; }
+ 
+#result-stats {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 20px 32px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+ 
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+}
+ 
+.result-row span:last-child {
+  font-weight: 700;
+}
+ 
+.good-color  { color: var(--good-color); filter: brightness(0.75); }
+.ok-color    { color: var(--lavender);   filter: brightness(0.75); }
+.miss-color  { color: var(--gray); }
+ 
+#btn-retry, #btn-menu {
+  font-family: 'Comfortaa', cursive;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 12px 36px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
