@@ -1,0 +1,121 @@
+:root {
+    --cream: #fdf6ec;
+    --pink: #f4b8c8;
+    --lavendar: #d4c5f0;
+    --brown: #7a4f3a;
+    --soft-brown: #c4956a;
+    --text: #3d2b1f;
+    --card-bg: #fff8f2;
+    --border: #e8d5c4;
+    --green: #a8d5c4;
+    --gray: #c8bdb8;
+
+    --perfect-color: #f4b8c8;
+    --good-color: #d4c5f0;
+    --miss-color: #c8bdb8;
+
+    --bubble-size: 52px;
+    --hit-zone-y: 75%;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Comfortaa', cursive;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    overflow: hidden;
+    user-select: none;
+}
+
+.screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#start-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--brown);
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    color: var(--soft-brown);
+    font-size: 0.95rem;
+}
+
+#difficulty-select {
+    display: flex;
+    gap: 10px;
+}
+
+.diff-btn {
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 22px;
+    border: 2px solid var(--border);
+    border-radius: 999px;
+    background: var(--card-bg);
+    color: var(--soft-brown);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.diff-btn:hover {
+    border-color: var(--pink);
+}
+
+.diff-btn.active {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: var(--brown);
+}
+
+#diff-desc {
+    font-size: 0.8rem;
+    color: var(--gray);
+    height: 16px;
+}
+
+#btn-start {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 14px 48px;
+    background: var(--pink);
+    border: none;
+    border-radius: 999px;
+    color: var(--brown);
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(244,184,200,0.5);
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-top: 8px;
+}
+
