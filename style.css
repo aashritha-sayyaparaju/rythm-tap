@@ -1,7 +1,7 @@
 :root {
     --cream: #fdf6ec;
     --pink: #f4b8c8;
-    --lavendar: #d4c5f0;
+    --lavender: #d4c5f0;
     --brown: #7a4f3a;
     --soft-brown: #c4956a;
     --text: #3d2b1f;
@@ -241,7 +241,7 @@ h1 {
     width: var(--bubble-size);
     height: var(--bubble-size);
     border-radius: 50%;
-    background: var(--lavendar);
+    background: var(--lavender);
     border: 3px solid rgba(212,197,240,0.5);
     display: flex;
     align-items: center;

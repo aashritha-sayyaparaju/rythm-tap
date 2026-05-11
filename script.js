@@ -1,3 +1,7 @@
+let state = freshState();
+let currentDiff = "easy";
+let timers = [];
+
 const DIFFICULTIES = {
   easy:   { speed: 3000, interval: 1200, perfectWindow: 120, goodWindow: 220 },
   normal: { speed: 2200, interval: 900,  perfectWindow: 80,  goodWindow: 160 },
@@ -194,6 +198,7 @@ function handleInput() {
   });
  
   if (!closest || closestDelta > diff.goodWindow) {
+    showFeedback("miss", "miss");
     breakCombo();
     return;
   }
