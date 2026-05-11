@@ -198,7 +198,6 @@ function handleInput() {
     return;
   }
  
-  // remove from active
   const idx = state.activeBubbles.indexOf(closest);
   state.activeBubbles.splice(idx, 1);
  
@@ -209,3 +208,126 @@ function handleInput() {
   }
 }
 
+function registerPerfect(el) {
+  state.perfects++;
+  state.totalJudged++;
+  state.combo++;
+  state.maxCombo = Math.max(state.maxCombo, state.combo);
+  state.score += 100 * comboMultiplier();
+  hitBubble(el);
+  showFeedback("perfect ✦", "perfect");
+  updateHUD();
+}
+ 
+function registerGood(el) {
+  state.goods++;
+  state.totalJudged++;
+  state.combo++;
+  state.maxCombo = Math.max(state.maxCombo, state.combo);
+  state.score += 50 * comboMultiplier();
+  hitBubble(el);
+  showFeedback("good", "good");
+  updateHUD();
+}
+ 
+function registerMiss(el) {
+  state.misses++;
+  state.totalJudged++;
+  missBubble(el);
+  showFeedback("miss", "miss");
+  breakCombo();
+}
+ 
+function breakCombo() {
+  if (state.combo > 0) {
+    state.combo = 0;
+    comboEl.classList.remove("shake");
+    void comboEl.offsetWidth;
+    comboEl.classList.add("shake");
+    setTimeout(() => comboEl.classList.remove("shake"), 300);
+  }
+  updateHUD();
+}
+ 
+function comboMultiplier() {
+  if (state.combo >= 20) return 4;
+  if (state.combo >= 10) return 3;
+  if (state.combo >= 5)  return 2;
+  return 1;
+}
+ 
+
+function hitBubble(el) {
+  el.classList.add("hit");
+  setTimeout(() => el.remove(), 250);
+}
+ 
+function missBubble(el) {
+  el.classList.add("miss-bubble");
+  setTimeout(() => el.remove(), 250);
+}
+ 
+function flashHitZone() {
+  hitZoneEl.classList.remove("flash");
+  void hitZoneEl.offsetWidth;
+  hitZoneEl.classList.add("flash");
+  setTimeout(() => hitZoneEl.classList.remove("flash"), 120);
+}
+
+let feedbackTimer = null;
+function showFeedback(text, type) {
+  feedbackEl.textContent = text;
+  feedbackEl.className = "";
+  void feedbackEl.offsetWidth;
+  feedbackEl.classList.add("show", type);
+  clearTimeout(feedbackTimer);
+  feedbackTimer = setTimeout(() => {
+    feedbackEl.className = "";
+  }, 500);
+}
+
+function updateHUD() {
+  scoreEl.textContent = Math.floor(state.score).toLocaleString();
+  comboEl.textContent = `x${state.combo > 0 ? comboMultiplier() : 1}`;
+ 
+  if (state.totalJudged > 0) {
+    const acc = ((state.perfects + state.goods * 0.5) / state.totalJudged) * 100;
+    accuracyEl.textContent = `${acc.toFixed(1)}%`;
+  } else {
+    accuracyEl.textContent = "-";
+  }
+}
+function endGame() {
+  state.running = false;
+  timers.forEach(clearTimeout);
+  timers = [];
+  trackEl.querySelectorAll(".bubble").forEach(b => b.remove());
+ 
+  const acc = state.totalJudged > 0
+    ? ((state.perfects + state.goods * 0.5) / state.totalJudged) * 100
+    : 0;
+ 
+  const grade = getGrade(acc);
+ 
+  resultScoreEl.textContent = Math.floor(state.score).toLocaleString();
+  resultAccuracyEl.textContent = `${acc.toFixed(1)}%`;
+  resultGradeEl.textContent = grade;
+  resultGradeEl.className = "";
+  resultGradeEl.classList.add(`grade-${grade.toLowerCase()}`);
+  resultPerfectsEl.textContent = state.perfects;
+  resultGoodsEl.textContent = state.goods;
+  resultMissesEl.textContent = state.misses;
+  resultMaxComboEl.textContent = state.maxCombo;
+ 
+  showScreen("results");
+}
+ 
+function getGrade(acc) {
+  if (acc >= 95) return "S";
+  if (acc >= 80) return "A";
+  if (acc >= 65) return "B";
+  if (acc >= 50) return "C";
+  return "F";
+}
+
+showScreen("start");
